@@ -19,6 +19,7 @@ a {
 	font-weight: 400;
 }
 ul {
+	margin-top: 0.2em;
 	margin-bottom: 0;
 }
 section {
@@ -40,7 +41,7 @@ blockquote {
 
 .heading header h1 {
 	font-size: 180%;
-	margin: 0.5em 0;
+	margin: 0.5em 0 0.2em;
 	font-weight: 600;
 }
 
@@ -59,15 +60,19 @@ blockquote {
 	margin: 0 1em 0 0;
 }
 
+.network {
+	font-weight: 500;
+}
+
 .profile strong,
 .profile span {
 	display: inline-block;
-	margin: 0 0.5em 0 0;
+	margin: 0 0.2em 0 0;
 }
 /* section / line breaks */
 section h2 {
 	font-size: 120%;
-	margin: 0 0 0.5em;
+	margin: 0 0 0;
 	text-transform: uppercase;
 	color: #BC1B39;
 	font-weight: 400;
@@ -75,9 +80,9 @@ section h2 {
 
 /* Experience items */
 .item {
-	margin: 0 0 1em;
-	padding: 0 0 1em;
-	border-bottom: 1px solid #F2EBEC;
+	margin: 0 0 0.5em;
+	padding: 0 0 0.5em;
+	/*border-bottom: 1px solid #F2EBEC;*/
 }
 
 .item:last-child {

@@ -53,9 +53,9 @@
 			{{#each profiles}}
 			<div class="profile">
 				{{#if network}}
-				<strong class="network">
-					{{network}}
-				</strong>
+				<span class="network">
+					{{network}}:
+				</span>
 				{{/if}}
 				{{#if username}}
 				<span class="username">
