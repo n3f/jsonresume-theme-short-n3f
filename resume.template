@@ -73,9 +73,8 @@
 	</section>
 	{{/resume.basics}}
 
-	{{#if resume.skills.length}}
+<!-- 	{{#if resume.skills.length}}
 	<section id="skills">
-		<h2>Skills</h2>
 		{{#each resume.skills}}
 		<div class="item">
 			{{#if name}}
@@ -93,21 +92,22 @@
 		</div>
 		{{/each}}
 	</section>
-	{{/if}}
+	{{/if}} -->
 
 	{{#if resume.work.length}}
 	<section class="experience">
 		<h2>Experience</h2>
 		{{#each resume.work}}
 		<section class="item">
-			<header>
-				{{#if company}}
-					<h3 class="name">{{company}}</h3>
-				{{/if}}
-			</header>
 			{{#if position}}
 			<span class="position">
-				{{position}}
+				{{position}},
+			</span>
+			{{/if}}
+
+			{{#if company}}
+			<span class="name">
+				{{company}}
 			</span>
 			{{/if}}
 
