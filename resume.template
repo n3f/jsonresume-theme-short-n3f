@@ -10,9 +10,6 @@
 	<style>
 	{{{css}}}
 	</style>
-	<style media="print">
-		body { font-size: 12px; }
-	</style>
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
 	
@@ -46,7 +43,8 @@
 
 
 		{{#if summary}}
-		<p>{{paragraphSplit summary}}</p>
+		<h2 class="summary">Summary</h2>
+		{{paragraphSplit summary}}
 		{{/if}}
 
 		{{#if profiles.length}}
@@ -99,36 +97,20 @@
 		<h2>Experience</h2>
 		{{#each resume.work}}
 		<section class="item">
-			{{#if position}}
-			<span class="position">
-				{{position}},
-			</span>
-			{{/if}}
+			{{#if position}}<span class="position">{{position}}</span>{{/if}}
 
-			{{#if company}}
-			<span class="name">
-				{{company}}
-			</span>
-			{{/if}}
+			{{#if company}}<span class="name">{{company}}</span>{{/if}}
 
-			{{#if startDate}}
-			<span class="startDate">
-				{{date startDate}}
-			</span>
-			{{/if}}
+			{{#if startDate}}<span class="startDate">{{date startDate}}</span>{{/if}}
 			{{#if endDate}}
-			<span class="endDate">
-				- {{date endDate}}
-			</span>
+			<span class="endDate">- {{date endDate}}</span>
 			{{else}}
-			<span class="endDate">
-				- Present
-			</span>
+			<span class="endDate">- Present</span>
 			{{/if}}
 
 			{{#if summary}}
 			<div class="summary">
-				<p>{{paragraphSplit summary}}</p>
+				{{paragraphSplit summary}}
 			</div>
 			{{/if}}
 			{{#if highlights.length}}
@@ -143,64 +125,52 @@
 	</section>
 	{{/if}}
 
-	{{#if resume.volunteer.length}}
-	<section class="experience">
-		<h2>Volunteering</h2>
-		{{#each resume.volunteer}}
+	{{#if resume.education.length}}
+	<section class="education">
+		<h2>Education</h2>
+		{{#each resume.education}}
 		<div class="item">
-			<header>
-				{{#if organization}}
-					<h3 class="name">{{organization}}</h3>
+			{{#if institution}}<div class="name">{{institution}}</div>{{/if}}
+
+			<div class="dates">
+				{{#if startDate}}
+				<span class="startDate">
+					{{date startDate}}
+				</span>
 				{{/if}}
-			</header>
-			{{#if position}}
-			<span class="position">
-				{{position}}
-			</span>
-			{{/if}}
-
-			{{#if startDate}}
-			<span class="startDate">
-				{{date startDate}}
-			</span>
-			{{/if}}
-			{{#if endDate}}
-			<span class="endDate">
-				- {{date endDate}}
-			</span>
-			{{else}}
-			<span class="endDate">
-				- Present
-			</span>
-			{{/if}}
-
-			{{#if summary}}
-			<div class="summary">
-				<p>{{summary}}</p>
+				{{#if endDate}}
+				<span class="endDate">
+					- {{date endDate}}
+				</span>
+				{{else}}
+				<span class="endDate">
+					- Present
+				</span>
+				{{/if}}
 			</div>
-			{{/if}}
-			{{#if highlights.length}}
-			<ul class="highlights">
-				{{#each highlights}}
-				<li>{{.}}</li>
-				{{/each}}
-			</ul>
-			{{/if}}
+
+			<div class="qualification">
+				{{#if studyType}}<span class="studyType">{{studyType}} </span>{{/if}}
+				{{#if area}}<span class="area"> - {{area}}</span>{{/if}}
+
+				{{#if gpa}}
+				<span class="gpa">
+					GPA: {{gpa}}
+				</span>
+				{{/if}}
+			</div>
+
 		</div>
 		{{/each}}
 	</section>
 	{{/if}}
 	
-	{{#if resume.education.length}}
-	<section id="education">
-		<h2>Education</h2>
-		{{#each resume.education}}
+	{{#if resume.certifications.length}}
+	<section class="certifications">
+		<h2>Certifications</h2>
+		{{#each resume.certifications}}
 		<div class="item">
-			<header>
-				{{#if institution}}
-					<h3 class="name">{{institution}}</h3>
-				{{/if}}
-			</header>
+			{{#if institution}}<div class="name">{{institution}}</div>{{/if}}
 
 			<div class="dates">
 				{{#if startDate}}
@@ -249,6 +219,11 @@
 		<h2>Awards</h2>
 		{{#each resume.awards}}
 		<div class="item">
+			{{#if awarder}}
+			<div class="name">
+				{{awarder}}
+			</div>
+			{{/if}}
 			{{#if title}}
 			<div class="title">
 				{{title}}
@@ -256,18 +231,59 @@
 			{{/if}}
 			{{#if date}}
 			<div class="date">
-				{{date}}
-			</div>
-			{{/if}}
-			{{#if awarder}}
-			<div class="awarder">
-				{{awarder}}
+				{{date date}}
 			</div>
 			{{/if}}
 			{{#if summary}}
 			<div class="summary">
 				<p>{{summary}}</p>
 			</div>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+	
+	{{#if resume.volunteer.length}}
+	<section class="volunteering">
+		<h2>Volunteering</h2>
+		{{#each resume.volunteer}}
+		<div class="item">
+			{{#if organization}}
+				<div class="name">{{organization}}</div>
+			{{/if}}
+			{{#if position}}
+			<div class="position">
+				{{position}}
+			</div>
+			{{/if}}
+
+			{{#if startDate}}
+			<span class="startDate">
+				{{date startDate}}
+			</span>
+			{{/if}}
+			{{#if endDate}}
+			<span class="endDate">
+				- {{date endDate}}
+			</span>
+			{{else}}
+			<span class="endDate">
+				- Present
+			</span>
+			{{/if}}
+
+			{{#if summary}}
+			<div class="summary">
+				<p>{{summary}}</p>
+			</div>
+			{{/if}}
+			{{#if highlights.length}}
+			<ul class="highlights">
+				{{#each highlights}}
+				<li>{{.}}</li>
+				{{/each}}
+			</ul>
 			{{/if}}
 		</div>
 		{{/each}}
