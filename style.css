@@ -5,9 +5,9 @@ body {
 	margin: 0 0;
 	margin-bottom: 100px;
 }
-em {
+/* em {
 	color: #999;
-}
+} */
 p {
 	line-height: 1.6;
 	font-size: 90%;
@@ -121,7 +121,7 @@ section h2 {
 
 .item .highlights {
 	list-style: square;
-	font-size: 90%;
+	/* font-size: 95%; */
 }
 
 .item .name {
@@ -140,7 +140,7 @@ section h2 {
 
 /* skills */
 #skills .item {
-	margin: 0.5em 0;
+	margin: 0.2em 0;
 	padding: 0 0 0.5em;
 	font-size: 90%;
 }
@@ -152,6 +152,7 @@ section h2 {
 	margin: 0 1em 0 0;
 	width: 23%;
 	vertical-align: top;
+	text-align: right;
 }
 
 #skills .item .keywords {

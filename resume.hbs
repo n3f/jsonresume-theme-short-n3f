@@ -1,21 +1,21 @@
 <!doctype html>
 <html>
 	<head>
-	
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
-	
-	<title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
+
+	<title>{{#resume.basics}}{{name}}{{/resume.basics}}: The hardest working employee you'll ever find.</title>
 
 	<style>
 	{{{css}}}
 	</style>
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-	
+
 	</head>
 	<body>
-	
+
 	<div id="resume">
 
 	{{#resume.basics}}
@@ -25,7 +25,8 @@
 			<div class="contact">
 				{{#if email}}
 				<span class="detail">
-					<a href="mailto:{{email}}">{{email}}</a>
+					{{!-- <a href="mailto:{{email}}">{{email}}</a> --}}
+					<a>{{email}}</a>
 				</span>
 				{{/if}}
 				{{#if phone}}
@@ -44,7 +45,7 @@
 
 		{{#if summary}}
 		<h2 class="summary">Summary</h2>
-		{{paragraphSplit summary}}
+		{{markdownify summary}}
 		{{/if}}
 
 		{{#if profiles.length}}
@@ -71,26 +72,29 @@
 	</section>
 	{{/resume.basics}}
 
-<!-- 	{{#if resume.skills.length}}
+	{{#if resume.skills.length}}
 	<section id="skills">
+		<header>
+			<h2 class="skills-header">Skills</h2>
+		</header>
 		{{#each resume.skills}}
 		<div class="item">
 			{{#if name}}
 			<div class="name">
-				{{name}}
+				{{{name}}}
 			</div>
 			{{/if}}
 			{{#if keywords.length}}
 			<div class="keywords">
 				{{#each keywords}}
-					{{.}}{{#if @last}}{{else}},{{/if}}
+					{{markdownify this stripParagraphs=true}}{{#if @last}}{{else}} • {{/if}}
 				{{/each}}
 			</div>
 			{{/if}}
 		</div>
 		{{/each}}
 	</section>
-	{{/if}} -->
+	{{/if}}
 
 	{{#if resume.work.length}}
 	<section class="experience">
@@ -110,13 +114,13 @@
 
 			{{#if summary}}
 			<div class="summary">
-				{{paragraphSplit summary}}
+				{{markdownify summary}}
 			</div>
 			{{/if}}
 			{{#if highlights.length}}
 			<ul class="highlights">
 				{{#each highlights}}
-				<li>{{.}}</li>
+				<li>{{markdownify .}}</li>
 				{{/each}}
 			</ul>
 			{{/if}}
@@ -130,25 +134,6 @@
 		<h2>Education</h2>
 		{{#each resume.education}}
 		<div class="item">
-			{{#if institution}}<div class="name">{{institution}}</div>{{/if}}
-
-			<div class="dates">
-				{{#if startDate}}
-				<span class="startDate">
-					{{date startDate}}
-				</span>
-				{{/if}}
-				{{#if endDate}}
-				<span class="endDate">
-					- {{date endDate}}
-				</span>
-				{{else}}
-				<span class="endDate">
-					- Present
-				</span>
-				{{/if}}
-			</div>
-
 			<div class="qualification">
 				{{#if studyType}}<span class="studyType">{{studyType}} </span>{{/if}}
 				{{#if area}}<span class="area"> - {{area}}</span>{{/if}}
@@ -160,16 +145,6 @@
 				{{/if}}
 			</div>
 
-		</div>
-		{{/each}}
-	</section>
-	{{/if}}
-	
-	{{#if resume.certifications.length}}
-	<section class="certifications">
-		<h2>Certifications</h2>
-		{{#each resume.certifications}}
-		<div class="item">
 			{{#if institution}}<div class="name">{{institution}}</div>{{/if}}
 
 			<div class="dates">
@@ -189,16 +164,26 @@
 				{{/if}}
 			</div>
 
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+
+	{{#if resume.certifications.length}}
+	<section class="certifications">
+		<h2>Certifications</h2>
+		{{#each resume.certifications}}
+		<div class="item">
 			<div class="qualification">
-				{{#if studyType}}
+				{{!-- {{#if studyType}}
 				<span class="studyType">
 					{{studyType}}
 				</span>
-				{{/if}}
+				{{/if}} --}}
 
 				{{#if area}}
 				<span class="area">
-					- {{area}}
+					{{area}}
 				</span>
 				{{/if}}
 
@@ -209,11 +194,30 @@
 				{{/if}}
 			</div>
 
+			{{#if institution}}<div class="name">{{institution}}</div>{{/if}}
+
+			<div class="dates">
+				{{#if startDate}}
+				<span class="startDate">
+					{{date startDate}}
+				</span>
+				{{/if}}
+				{{#if endDate}}
+				<span class="endDate">
+					- {{date endDate}}
+				</span>
+				{{else}}
+				<span class="endDate">
+					- Present
+				</span>
+				{{/if}}
+			</div>
+
 		</div>
 		{{/each}}
 	</section>
 	{{/if}}
-	
+
 	{{#if resume.awards.length}}
 	<section id="awards">
 		<h2>Awards</h2>
@@ -243,7 +247,7 @@
 		{{/each}}
 	</section>
 	{{/if}}
-	
+
 	{{#if resume.volunteer.length}}
 	<section class="volunteering">
 		<h2>Volunteering</h2>
@@ -289,7 +293,7 @@
 		{{/each}}
 	</section>
 	{{/if}}
-	
+
 	{{#if resume.publications.length}}
 	<section id="publications">
 		<h2>Publications</h2>
@@ -366,7 +370,7 @@
 		{{/each}}
 	</section>
 	{{/if}}
-	
+
 	{{#if resume.references.length}}
 	<section id="references">
 		<h2>References</h2>
@@ -386,8 +390,8 @@
 		{{/each}}
 	</section>
 	{{/if}}
-	
+
 	</div>
-	
+
 	</body>
 </html>
